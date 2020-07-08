@@ -49,6 +49,9 @@ namespace CustomArray
         /// <param name="length">Length</param>
         public CustomArray(int first, int length)
         {
+            if (length <= 0)
+                throw new ArgumentException("length is smaler than 0");
+
             First = first;
             Length = length;
             Array = new T[Length];
@@ -63,6 +66,15 @@ namespace CustomArray
         /// <exception cref="ArgumentException">Thrown when count is smaler than 0</exception>
         public CustomArray(int first, IEnumerable<T> list)
         {
+            if (list is null)
+                throw new NullReferenceException("list is null");
+
+            if (list.Count() < 0)
+                throw new ArgumentException("count is smaler than 0");
+
+            if (list.ToArray().Length <= 0)
+                throw new ArgumentException("length is smaler than 0");
+
             First = first;
             Array = list.ToArray();
             Length = Array.Length;
@@ -77,6 +89,12 @@ namespace CustomArray
         /// <exception cref="ArgumentException">Thrown when list without elements </exception>
         public CustomArray(int first, params T[] list)
         {
+            if (list is null)
+                throw new ArgumentNullException("list");
+
+            if (list.Length <= 0)
+                throw new ArgumentException("list without elements");
+
             First = first;
             Array = list;
             Length = Array.Length;
@@ -99,6 +117,8 @@ namespace CustomArray
             }
             set
             {
+                if (item < First || item > Last)
+                    throw new ArgumentException("Index out of array range");
                 if (value == null)
                     throw new ArgumentNullException("value");
                 Array[item - First] = value;
