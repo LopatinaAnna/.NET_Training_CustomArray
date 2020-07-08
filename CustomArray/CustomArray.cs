@@ -10,37 +10,23 @@ namespace CustomArray
         /// <summary>
         /// Should return first index of array
         /// </summary>
-        public int First
-        {
-            get;
-            private set;
-        }
+        public int First { get; private set; }
 
         /// <summary>
         /// Should return last index of array
         /// </summary>
-        public int Last
-        {
-            get => Length - 1 + First;
-        }
+        public int Last { get => Length - 1 + First; }
 
         /// <summary>
         /// Should return length of array
         /// <exception cref="ArgumentException">Thrown when value was smaller than 0</exception>
         /// </summary>
-        public int Length
-        {
-            get;
-            private set;
-        }
+        public int Length { get; private set; }
 
         /// <summary>
         /// Should return array
         /// </summary>
-        public T[] Array
-        {
-            get;
-        }
+        public T[] Array { get; }
 
         /// <summary>
         /// Constructor with first index and length
