@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace CustomArray
 {
@@ -53,7 +54,7 @@ namespace CustomArray
         public CustomArray(int first, IEnumerable<T> list)
         {
             if (list is null)
-                throw new NullReferenceException("list is null");
+                throw new MyNullException("list is null", new NullReferenceException());
 
             if (list.Count() < 0)
                 throw new ArgumentException("count is smaler than 0");
@@ -119,6 +120,19 @@ namespace CustomArray
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable<T>)Array).GetEnumerator();
+        }
+
+        [Serializable]
+        public class MyNullException : NullReferenceException
+        {
+            public MyNullException(string message, Exception innerException) : base(message, innerException)
+            {
+                throw innerException;
+            }
+
+            protected MyNullException(SerializationInfo info, StreamingContext context) : base(info, context)
+            {
+            }
         }
     }
 }
