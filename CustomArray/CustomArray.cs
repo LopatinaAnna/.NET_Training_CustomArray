@@ -59,7 +59,7 @@ namespace CustomArray
             if (list.Count() < 0)
                 throw new ArgumentException("count is smaler than 0");
 
-            if (list.ToArray().Length <= 0)
+            if (list.ToArray().Length == 0)
                 throw new ArgumentException("length is smaler than 0");
 
             First = first;
@@ -79,7 +79,7 @@ namespace CustomArray
             if (list is null)
                 throw new ArgumentNullException("list");
 
-            if (list.Length <= 0)
+            if (list.Length == 0)
                 throw new ArgumentException("list without elements");
 
             First = first;
